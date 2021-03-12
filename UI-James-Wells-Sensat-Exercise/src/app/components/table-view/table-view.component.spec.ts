@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableViewComponent } from './table-view.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('TableViewComponent', () => {
   let component: TableViewComponent;
@@ -8,7 +9,8 @@ describe('TableViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableViewComponent ]
+      declarations: [ TableViewComponent ],
+      providers: [HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -21,5 +23,9 @@ describe('TableViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 });

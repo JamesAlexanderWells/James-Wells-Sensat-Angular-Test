@@ -42,10 +42,14 @@ export class GraphViewComponent implements OnInit {
   });
     this.form.controls[this.sensorId].valueChanges.subscribe(newSensor => this.setGraphData(newSensor));
     this.sensorService.availableSensorReadings.subscribe(jsonReadings => {
-      this.sensorOptions = [...new Set(jsonReadings.map(jsonObj => jsonObj.id))];
-      this.displayData = jsonReadings;
-      this.form.controls[this.sensorId].setValue(this.sensorOptions[0]);
+      this.initializeComponentData(jsonReadings);
     });
+  }
+
+  private initializeComponentData(jsonReadings) {
+    this.sensorOptions = [...new Set(jsonReadings.map(jsonObj => jsonObj.id))];
+    this.displayData = jsonReadings;
+    this.form.controls[this.sensorId].setValue(this.sensorOptions[0]);
   }
 
   setGraphData(boxId: string){

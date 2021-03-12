@@ -21,17 +21,9 @@ export class TableViewComponent implements OnInit {
 
 
 
-  constructor(private sensorService: FileReadService, private fb: FormBuilder) { }
-  form: FormGroup;
-  sensorTypeControl = 'sensorType';
-  nameControl = 'name';
-  sensorTypes = [];
-  allSensorTypesConstant = 'All Sensor Types';
+  constructor(private sensorService: FileReadService) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      name: ['']
-    });
     this.sensorService.availableSensorReadings.subscribe(jsonReadings => {
       this.displayData = jsonReadings;
       this.populateDataSource(this.displayData);

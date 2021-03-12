@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphViewComponent } from './graph-view.component';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {FormBuilder} from "@angular/forms";
 
 describe('GraphViewComponent', () => {
   let component: GraphViewComponent;
@@ -8,7 +10,8 @@ describe('GraphViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphViewComponent ]
+      declarations: [ GraphViewComponent ],
+      providers: [HttpClient, HttpHandler, FormBuilder]
     })
     .compileComponents();
   }));
@@ -21,5 +24,9 @@ describe('GraphViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 });
