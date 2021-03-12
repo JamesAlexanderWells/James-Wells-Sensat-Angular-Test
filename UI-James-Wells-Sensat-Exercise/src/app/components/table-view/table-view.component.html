@@ -1,14 +1,12 @@
 <h1>Sensor Readings</h1>
 
 <div class="content-container">
-  <form class="filter-container" [formGroup]="form">
+  <div class="filter-container">
     <mat-form-field class="input" appearance="outline">
       <mat-label>Sensor Type / Name Filter</mat-label>
-      <input (keyup)="applyFilter($event)"  [formControl]="this.form.controls[nameControl]" matInput>
-      <mat-error *ngIf="this.form.controls[nameControl].invalid">
-      </mat-error>
+      <input (keyup)="applyFilter($event)" matInput>
     </mat-form-field>
-  </form>
+  </div>
 <div class="mat-elevation-z8 table-container">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
