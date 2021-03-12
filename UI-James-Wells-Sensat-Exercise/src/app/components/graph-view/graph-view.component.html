@@ -1,0 +1,14 @@
+<h1>Sensor Readings Over Time</h1>
+<form [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>Sensor ID</mat-label>
+      <mat-select [formControl]="this.form.controls[sensorId]">
+        <mat-option *ngFor="let sensor of sensorOptions" [value]="sensor">
+          {{sensor}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</form>
+<div class="graph-container">
+<p-chart type="line" [data]="data" [options]="basicOptions"></p-chart>
+</div>

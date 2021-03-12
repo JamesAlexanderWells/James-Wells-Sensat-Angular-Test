@@ -1,0 +1,25 @@
+.top-toolbar {
+  width: 100%;
+  min-height: 64px;
+}
+
+
+.footer{
+  margin-top: 2rem;
+  flex-shrink: 0;
+}
+
+.app-container {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+.app-content{
+  flex: 1 1 auto;
+}
+
