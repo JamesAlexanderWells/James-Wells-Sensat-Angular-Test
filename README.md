@@ -1,4 +1,4 @@
-# James Wells BGL Test
+# James Wells Sensat Angular Test
 
 James Wells' submission to Sensat for Angular Programming Exercise (including unit tests)
 - The two bonus exercises that were chosen were the graph of sensors readings 
