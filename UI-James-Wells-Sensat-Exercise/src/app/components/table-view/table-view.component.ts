@@ -12,25 +12,35 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./table-view.component.scss']
 })
 export class TableViewComponent implements OnInit {
+  private displayData = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>();
-  displayData = [];
   displayedColumns: string[] = ['id', 'box_id', 'sensor_type', 'name', 'range_l', 'range_u',
   'longitude', 'latitude', 'reading', 'unit', 'reading_ts'];
-  globalFilter = '';
-
-
 
   constructor(private sensorService: FileReadService) { }
 
+  private populateDataSource(data){
+    this.dataSource = new MatTableDataSource<SensorReading>(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (dataItem, filter) => {
+      return dataItem.sensor_type.toLowerCase().includes(filter)
+        || dataItem.name.toLowerCase().includes(filter);
+    };
+  }
+
+  private compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
   ngOnInit(): void {
-    this.sensorService.availableSensorReadings.subscribe(jsonReadings => {
+    this.sensorService.getAvailableSensorReadings().subscribe(jsonReadings => {
       this.displayData = jsonReadings;
       this.populateDataSource(this.displayData);
     });
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -55,17 +65,5 @@ export class TableViewComponent implements OnInit {
     this.populateDataSource(sortedData);
   }
 
-  private populateDataSource(data){
-    this.dataSource = new MatTableDataSource<SensorReading>(data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.filterPredicate = (dataItem, filter) => {
-      return dataItem.sensor_type.toLowerCase().includes(filter)
-        || dataItem.name.toLowerCase().includes(filter);
-    };
-  }
-
-  private compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
 
 }

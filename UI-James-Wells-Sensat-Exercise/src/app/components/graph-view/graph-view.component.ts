@@ -8,13 +8,13 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./graph-view.component.scss']
 })
 export class GraphViewComponent implements OnInit {
+  private completeData = [];
   form: FormGroup;
   sensorOptions = [];
-  sensorId = 'sensorId';
+  sensorIdControl = 'sensorId';
 
   data: any;
 
-  displayData = [];
   basicOptions = {
     legend: {
       labels: {
@@ -36,24 +36,25 @@ export class GraphViewComponent implements OnInit {
   };
   constructor(private sensorService: FileReadService, private fb: FormBuilder) { }
 
+  private initializeComponentData(jsonReadings) {
+    this.sensorOptions = [...new Set(jsonReadings.map(jsonObj => jsonObj.id))];
+    this.completeData = jsonReadings;
+    this.form.controls[this.sensorIdControl].setValue(this.sensorOptions[0]);
+  }
+
+
   ngOnInit(): void {
     this.form = this.fb.group({
     sensorId: [],
   });
-    this.form.controls[this.sensorId].valueChanges.subscribe(newSensor => this.setGraphData(newSensor));
-    this.sensorService.availableSensorReadings.subscribe(jsonReadings => {
+    this.form.controls[this.sensorIdControl].valueChanges.subscribe(newSensor => this.setGraphData(newSensor));
+    this.sensorService.getAvailableSensorReadings().subscribe(jsonReadings => {
       this.initializeComponentData(jsonReadings);
     });
   }
 
-  private initializeComponentData(jsonReadings) {
-    this.sensorOptions = [...new Set(jsonReadings.map(jsonObj => jsonObj.id))];
-    this.displayData = jsonReadings;
-    this.form.controls[this.sensorId].setValue(this.sensorOptions[0]);
-  }
-
   setGraphData(boxId: string){
-    const filteredDisplayData = this.displayData.filter(jsonObj => jsonObj.id === boxId);
+    const filteredDisplayData = this.completeData.filter(jsonObj => jsonObj.id === boxId);
     this.data = {
       labels: filteredDisplayData.map(jsonObj => jsonObj.reading_ts),
       datasets: [
