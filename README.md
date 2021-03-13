@@ -43,7 +43,7 @@ James Wells' submission to Sensat for Angular Programming Exercise (including un
 - I am only using one filter input for two columns. This is because I realised that the name / sensor type were always the same. Having two types of filters on two columns that always had matching values would have made one of the filters always redundant. I also would have made the text filter work across all columns but this was not stated in the requirements
 - Colours I picked gave a professional vibe
 - The pagination numbers I used gave the user either a small chunk to view at a time or a large chunk to view, but not to the point where the UI's performance is affected.
-- I provided unit tests to validate my algorithmic functionality.
+- I provided unit tests to validate my core functionality.
 
 ## Key Future Considerations
 - Please talk to me in the interview about this i feel there is too much to say for the README.md
