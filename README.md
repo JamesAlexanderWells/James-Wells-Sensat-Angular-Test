@@ -1,7 +1,7 @@
 # James Wells Sensat Angular Test
 
 James Wells' submission to Sensat for Angular Programming Exercise (including unit tests)
-- The two bonus exercises that were chosen were the graph of sensors readings 
+- The two bonus exercises that were chosen were the graph of sensors readings and the table filtering
 
 
 ## How to set up / start up
