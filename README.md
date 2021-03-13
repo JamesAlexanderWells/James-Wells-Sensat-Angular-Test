@@ -12,7 +12,7 @@ James Wells' submission to Sensat for Angular Programming Exercise (including un
 - Under the "UI-James-Wells-Sensat-Exercise" folder run "ng build" in the cmd / terminal
 - Under the "UI-James-Wells-Sensat-Exercise" folder run "ng serve" (or npm start) in the cmd / terminal
 - If you want to run the unit tests, under the "UI-James-Wells-Sensat-Exercise" folder run "ng test" in the cmd / terminal
-- Go to http://localhost:4200/ on any of google chrome, Firefox, Edge or IE to access the app
+- Go to http://localhost:4200/ on any of Google Chrome, Firefox, Edge or IE to access the app
 - The json readings which this app is using from can be found in the assets folder if needed
 
 ## How to use
